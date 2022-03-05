@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+
+    <!-- tìm từ dài nhất trong chuỗi  -->
+    <script>
+      function title(str) {
+        let text = str.match(/\w[a-z]{0,}/gi);
+        let result = text[0];
+        let titleLength = text.length;
+        for (var i = 1; i < titleLength; i++) {
+          if (result.length < text[i].length) {
+            result = text[i];
+          }
+        }
+        return result;
+      }
+      console.log(title("Web Development Tutorial"));
+    </script>
+
+    <!-- hàm viết hao chữ cái đàu tiên của 1 chuỗi -->
+    <!-- <script>
+      function title(str) {
+        let titleSplit = str.split(" ");
+        let titleLength = titleSplit.length;
+        for (var i = 0; i < titleLength; i++) {
+          titleSplit[i] =
+            titleSplit[i][0].toUpperCase() + titleSplit[i].slice(1);
+        }
+        return titleSplit.join(" ");
+      }
+      console.log(title("hà nội"));
+    </script> -->
+
+    <!-- sắp xếp chuổi -->
+    <!-- <script>
+      function sortStr(demo) {
+        return [...demo].sort((a, b) => a.localeCompare(b)).join("");
+      }
+
+      console.log(sortS("rikeisoft"));
+    </script> -->
+
+    <!-- <script>
+      function insert_Row(index) {
+        let table = document.getElementById("sampleTable");
+        let tr = document.createElement("tr");
+        tr.innerHTML = "<td>cell1</td><td>cell2</td>";
+        table.children[0].appendChild(tr);
+      }
+    </script> -->
+
+    <!-- lấy attribute và value của thẻ -->
+    <!-- <script>
+      function getAttributes() {
+        Array.prototype.slice
+          .call(document.getElementById("wjr").attributes)
+          .forEach(function (item) {
+            // console.log(item.name + ": " + item.value);
+            alert(item.name + ": " + item.value);
+          });
+      }
+    </script> -->
+
+    <!-- <script>
+      function js_style() {
+        document.getElementById("text").style.color = randomColor();
+        document.getElementById("text").style.fontSize = randomSize();
+      }
+      function randomColor() {
+        let randomColor =
+          "#" + Math.floor(Math.random() * 1666666).toString(16);
+        return randomColor;
+      }
+      function randomSize() {
+        let randomSize = Math.floor(Math.random() * 5) + 4 + "px";
+        console.log(randomSize);
+        return randomSize;
+      }
+    </script> -->
+  </body>
+</html>

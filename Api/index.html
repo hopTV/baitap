@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="info">
+      <p id="name"></p>
+      <p id="email"></p>
+      <p id="address"></p>
+      <p id="phone"></p>
+    </div>
+  </body>
+  <script>
+    // let data = [];
+    const getinfo = async () => {
+      let res = await fetch("https://randomuser.me/api/");
+      let data = await res.json();
+      let user = data.results[0];
+      console.log(">>> check data :", user);
+      document.getElementById(
+        "name"
+      ).innerHTML = ` name :${user.name.title}.${user.name.first} ${user.name.last}`;
+
+      document.getElementById("email").innerHTML = ` email :${user.email}`;
+
+      document.getElementById(
+        "address"
+      ).innerHTML = `address :${user.location.city}`;
+      document.getElementById("phone").innerHTML = `phone: ${user.phone}`;
+    };
+    getinfo();
+    console.log(getinfo());
+  </script>
+</html>

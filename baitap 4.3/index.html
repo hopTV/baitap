@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="watch">
+        <div class="outer-circle">
+          <div class="inner-circle">
+            <span class="text minute">0 :</span>
+            <span class="text sec">&nbsp; 0 :</span>
+            <span class="text msec">&nbsp;0</span>
+          </div>
+        </div>
+        <div class="btn-wrapper">
+          <button class="btn reset">reset</button>
+          <button class="btn play">play</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const playButton = document.getElementsByClassName("play")[0];
+      const resetButton = document.getElementsByClassName("reset")[0];
+      const second = document.getElementsByClassName("sec")[0];
+      const minute = document.getElementsByClassName("minute")[0];
+      const centiSecond = document.getElementsByClassName("msec")[0];
+      const bg = document.getElementsByClassName("outer-circle")[0];
+
+      let isplay = false;
+      let sec;
+      let secCounter = 0;
+      let centiSec;
+      let centiCounter = 0;
+      let min;
+      let minCounter = 0;
+      let isReset = false;
+
+      const play = () => {
+        if (!isplay && !isReset) {
+          playButton.innerHTML = "Pause";
+          bg.classList.add("animation-bg");
+          min = setInterval(() => {
+            minute.innerText = `${++minCounter} : `;
+          }, 60 * 1000);
+          sec = setInterval(() => {
+            if (secCounter === 60) {
+              secCounter = 0;
+            }
+            second.innerText = `${++secCounter} : `;
+          }, 1000);
+          centiSec = setInterval(() => {
+            if (centiCounter === 100) {
+              centiCounter = 0;
+            }
+            centiSecond.innerText = `${++centiCounter}`;
+          }, 10);
+          isplay = true;
+          isReset = true;
+        } else {
+          playButton.innerHTML = "Play";
+          clearInterval(sec);
+          clearInterval(centiSec);
+          clearInterval(min);
+          isplay = false;
+          isReset = false;
+          bg.classList.remove("animation-bg");
+        }
+      };
+
+      const reset = () => {
+        isReset = true;
+        play();
+        second.innerHTML = "0 :";
+        centiSecond.innerHTML = "0";
+        minute.innerHTML = "0 :";
+      };
+      playButton.addEventListener("click", play);
+      resetButton.addEventListener("click", reset);
+    </script>
+  </body>
+</html>
