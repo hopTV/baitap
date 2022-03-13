@@ -229,12 +229,10 @@ const TranferMember = () => {
   const members = JSON.parse(localStorage.getItem("members"));
   console.log("check", members);
 
-  const handleDeleteMember = (index) => {
-    let newData = members;
-    newData = localStorage.removeItem((index = javaMembers.index));
-    newData = localStorage.removeItem((index = reactMembers.index));
-    setFormData([...newData]);
-    console.log(">>> neww data:", newData);
+  const handleDeleteMember = (name) => {
+    let newData = JSON.parse(localStorage.getItem("members"));
+
+    newData = localStorage.removeItem("members" === name);
   };
 
   return (
@@ -258,7 +256,7 @@ const TranferMember = () => {
                 key={index}
                 handleTranfer={() => tranferReactToJavaMember(index)}
                 handleEdit={() => onEditReactMember(index)}
-                handleDelete={() => handleDeleteMember(index)}
+                handleDelete={() => handleDeleteMember(user.name)}
                 //   renderExtend={() => <span>hello by react</span>
               />
             );
@@ -274,7 +272,7 @@ const TranferMember = () => {
                 key={index}
                 handleTranfer={() => tranferJavaToReactMember(index)}
                 handleEdit={() => onEditJavaMember(index)}
-                handleDelete={() => handleDeleteMember(index)}
+                handleDelete={() => handleDeleteMember(user.name)}
 
                 //   renderExtend={() => <span>hello by java</span>}/>
               />
